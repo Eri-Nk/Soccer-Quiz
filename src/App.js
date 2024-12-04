@@ -1,23 +1,55 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { Home, Quiz, ResultsPage, AnswerReview } from "./pages";
+import leagues from "./data/leagues";
+import { Helmet } from "react-helmet-async";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Helmet>
+        <title>Soccer Quiz</title>
+        <meta
+          name="description"
+          content="Test your soccer knowledge across top leagues!"
+        />
+      </Helmet>
+      <BrowserRouter
+        future={{
+          v7_relativeSplatPath: true,
+        }}
+      >
+        <Routes>
+          <Route path="/home" element={<Home />} />
+          <Route path="/" element={<Navigate to="/home" />} />
+
+          {/* quiz-component */}
+          {leagues.map((league) => (
+            <Route
+              key={league.id}
+              path={`/${league.id}/questions`}
+              element={<Quiz league={league} />}
+            />
+          ))}
+
+          {/* quiz-result */}
+          {leagues.map((league) => (
+            <Route
+              key={league.id}
+              path={`/${league.id}/quiz_result`}
+              element={<ResultsPage />}
+            />
+          ))}
+
+          {/* quiz-review */}
+          {leagues.map((league) => (
+            <Route
+              key={league.id}
+              path={`/${league.id}/answer_review`}
+              element={<AnswerReview />}
+            />
+          ))}
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

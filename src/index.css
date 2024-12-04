@@ -1,13 +1,479 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+a {
+  text-decoration: none;
+}
+
+h3 {
+  font-size: clamp(1.3rem, 5vw, 2rem);
+  font-family: "Roboto", sans-serif;
+  margin-bottom: 1rem;
+}
+
+.error {
+  text-align: center;
+}
+
+/* Home container */
+
+.home {
+  padding: 40px;
+  background-image: url("./assets/soccer-pitch.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  color: #fff;
+  position: relative;
+}
+.home::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  z-index: 1;
+}
+.home > * {
+  position: relative;
+  z-index: 2;
+}
+/* welcome text */
+.welcome {
+  font-family: "Oswald", sans-serif;
+  font-size: clamp(1.5rem, 5vw, 3rem);
+  font-weight: bold;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+  margin-bottom: 2rem;
+  text-align: center;
+  line-height: 1.2;
+}
+
+@media (max-width: 600px) {
+  .welcome {
+    margin-bottom: 1.5rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+  }
+}
+
+/* intro note */
+
+.test-notes {
+  text-align: center;
+  margin-bottom: 3rem;
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.8);
+}
+
+.test-notes p {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* League item */
+.league-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 0 auto;
+  width: 90%;
+}
+figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+  text-align: center;
+  margin: 0;
+  cursor: pointer;
+  transition: transform 0.3s, opacity 0.3s;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+figure:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+/* fig-caption */
+.league-name {
+  font-family: "Sour Gummy", "Franklin Gothic Medium", Arial, sans-serif;
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin-top: 10px;
+  color: #fff;
+}
+
+img {
+  max-width: 100px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* quiz-body */
+
+.date-time {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  font-family: "Roboto", Arial, sans-serif;
+  color: #228b22;
+  gap: 1rem;
+  padding: 0.5rem;
+}
+
+.date-time .date {
+  font-size: clamp(0.8rem, 5vw, 1.5rem);
+}
+
+@media (max-width: 900px) {
+  .date-time {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+  }
+}
+
+.date-time .time {
+  font-weight: 600;
+  color: #196f3d;
+  font-size: clamp(0.6rem, 5vw, 1rem);
+}
+
+.league-quiz-container {
+  min-height: 100vh;
+  width: 80%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.league-heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.league-heading img {
+  max-width: 60px;
+  max-height: 60px;
+  border-radius: 50%;
+}
+.league-heading span {
+  font-family: "Sour Gummy", "Times New Roman", Times, serif;
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #228b22;
+}
+
+.league-quiz-container main {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.league-quiz-container main h2 {
+  font-size: clamp(1.2rem, 5vw, 1.8rem);
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.options {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.options button {
+  display: block;
+  width: 100%;
+  padding: 12px 8px;
+  border: 2px solid #dcdcdc;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+.options button:hover {
+  border-color: rgba(34, 139, 34, 0.8);
+  box-shadow: 0 4px 8px rgba(34, 139, 34, 0.3);
+}
+
+.update-question {
+  width: 100%;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.update-question .counter {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.index-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.index-buttons button {
+  padding: 10px 20px;
+  background-color: rgba(34, 139, 34, 0.8);
+  cursor: pointer;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.index-buttons button:hover {
+  background-color: rgba(34, 139, 34, 1);
+}
+
+.index-buttons button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  color: #666;
+}
+
+/* quiz result */
+.quiz-result {
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+  color: #333;
+  padding: 0 10px;
+}
+
+.quiz-result h1 {
+  font-size: clamp(1.5rem, 5vw, 2rem);
+}
+.display-result {
+  margin: 20px 0;
+  font-size: 1.2rem;
+}
+
+.display-result span {
+  font-weight: bold;
+}
+
+.result-message {
+  font-weight: bold;
+  margin: 15px 0;
+}
+
+.navigate-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 80px;
+}
+@media (max-width: 900px) {
+  .navigate-buttons {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+  .navigate-buttons button {
+    margin-top: 15px;
+  }
+}
+.navigate-buttons button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: #228b22;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.navigate-buttons button:hover {
+  background-color: #145a32;
+  transform: scale(1.05);
+}
+
+/* review section*/
+
+/* Error Message Styling */
+.error-message {
+  text-align: center;
+  color: #e74c3c;
+}
+
+.error-message button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.error-message button:hover {
+  background-color: #2980b9;
+}
+
+.review-answer {
+  padding: 20px;
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+.review-answer h1 {
+  font-size: clamp(1.5rem, 5vw, 2rem);
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.review-item {
+  margin: 0 auto;
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: #333;
+  width: 80%;
+  max-width: 900px;
+}
+
+.review-item h2 {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+
+.explain .answer-text:hover {
+  text-decoration: underline;
+}
+
+.button-content {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+}
+
+.right-text-container {
+  grid-column: 1/2;
+}
+.text-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: flex-start;
+}
+
+.text-container.explain {
+  justify-content: flex-end;
+  grid-column: 3/4;
+}
+
+.option-text {
+  grid-column: 2/3;
+}
+.answer-text {
+  color: #777;
+  font-size: 0.9rem;
+}
+.button-content .info {
+  display: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+@media (max-width: 700px) {
+  .answer-text {
+    display: none;
+  }
+  .wrong-icon,
+  .right-icon {
+    display: inline-block;
+  }
+  .button-content .info {
+    display: inline-block;
+  }
+}
+
+.review-options .correct {
+  background-color: rgba(190, 245, 176, 0.7);
+}
+
+.review-options .wrong {
+  background-color: rgba(247, 79, 96, 0.7);
+}
+
+.review-options button .right-icon {
+  color: #1b6b06;
+  font-size: 1rem;
+  margin-right: 4px;
+}
+
+.review-options button .wrong-icon {
+  color: #e00417;
+  font-size: 1rem;
+  margin-right: 4px;
+}
+
+.review-options p {
+  margin-top: 15px;
+  border-top: 2px solid #ccc;
+  padding-top: 30px;
+  color: #666;
+}
+
+/* Footer Link */
+.more-info {
+  text-align: center;
+  margin-top: 30px;
+}
+.more-info a {
+  color: #3498db;
+  font-weight: bold;
+}
+
+.more-info a:hover {
+  color: #2980b9;
+  text-decoration: underline;
+}
+
+.review-navigate-buttons {
+  margin-top: 40px;
+  flex-direction: row;
+}
+
+@media (max-width: 700px) {
+  .review-navigate-buttons {
+    flex-direction: column;
+  }
+  .review-navigate-buttons buttons {
+    margin-top: 15px;
+  }
 }
