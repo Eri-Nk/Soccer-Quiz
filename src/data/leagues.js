@@ -474,7 +474,7 @@ const leagues = [
         id: 10,
         question: "Which manager holds the record for the most Serie A titles?",
         options: [
-          "Fabio Capello,",
+          "Fabio Capello",
           "Giovanni Trapattoni",
           "Massimiliano Allegri",
           "Antonio Conte",
